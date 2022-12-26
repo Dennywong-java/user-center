@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: user_center
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://dennishuang-1.cdchmu3tua75.us-east-1.rds.amazonaws.com/user_center
+    username: root
+    password: 3669450H
+  # session失效时间
+  session:
+    timeout: 86400
+server:
+  port: 8000
+
+# Spring Boot配置
+mybatis-plus:
+  # 取消驼峰命名自动映射为下划线命名
+  configuration:
+    map-underscore-to-camel-case: false
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
