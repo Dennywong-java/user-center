@@ -42,7 +42,7 @@ public class UserController {
 
     @GetMapping("/search")
     public List<User> searchUser(String username, HttpServletRequest request){
-        // To Do: 过滤返回信息
+        // To Do: 过滤返回信息 - 不返回用户密码登敏感信息
         
         // 鉴权：仅管理员可以操作
         if(!isAdmin(request)) return new ArrayList<>();
