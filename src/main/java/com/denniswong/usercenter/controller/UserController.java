@@ -43,7 +43,7 @@ public class UserController {
 
     @GetMapping("/search")
     public List<User> searchUser(String username, HttpServletRequest request){
-        // To Do: 过滤返回信息 - 不返回用户密码登敏感信息
+        // ToDo: 过滤返回信息 - 不返回用户密码登敏感信息
         
         // 鉴权：仅管理员可以操作
         if(!isAdmin(request)) return new ArrayList<>();
@@ -56,6 +56,17 @@ public class UserController {
         return userList.stream().map(user -> userService.getSafeUser(user)).collect(Collectors.toList());
     }
 
+    @GetMapping("/getCurrentUser")
+    public User getCurrentUser(HttpServletRequest request){
+        Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
+        User currentUser = (User) userObj;
+        if(currentUser == null) return null;
+        long userId = currentUser.getId();
+        User userById = userService.getById(userId);
+        // toDo 校验用户是否合法
+
+        return userService.getSafeUser(userById);
+    }
     @PostMapping("/delete")
     public boolean deleteUser(@RequestBody long id, HttpServletRequest request){
         // 鉴权：仅管理员可以操作
@@ -68,7 +79,7 @@ public class UserController {
     /**
      * 是否为管理员
      * @param request
-     * @return
+     * @return boolean
      */
     private boolean isAdmin(HttpServletRequest request){
         // 鉴权：是否为管理员
