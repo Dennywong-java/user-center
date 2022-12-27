@@ -1,4 +1,4 @@
-package com.denniswong.usercenter.model;
+package com.denniswong.usercenter.model.domain;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;

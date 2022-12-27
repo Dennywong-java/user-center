@@ -1,10 +1,9 @@
 package com.denniswong.usercenter.service;
 
-import com.denniswong.usercenter.model.User;
+import com.denniswong.usercenter.model.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
 * @author xiganghuang
@@ -24,4 +23,5 @@ public interface UserService extends IService<User> {
 
     User doLogin(String userAccount, String userPassword, HttpServletRequest request);
 
+    User getSafeUser(User user);
 }

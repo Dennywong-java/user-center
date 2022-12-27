@@ -1,7 +1,7 @@
 package com.denniswong.usercenter.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.denniswong.usercenter.model.User;
+import com.denniswong.usercenter.model.domain.User;
 import com.denniswong.usercenter.model.request.UserLoginRequest;
 import com.denniswong.usercenter.model.request.UserRegisterRequest;
 import com.denniswong.usercenter.service.UserService;
@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.denniswong.usercenter.constant.UserConstant.ADMIN_ROLE;
 import static com.denniswong.usercenter.constant.UserConstant.USER_LOGIN_STATE;
@@ -51,7 +52,8 @@ public class UserController {
         if(StringUtils.isNotBlank(username)){
             queryWrapper.eq("username",username);
         }
-        return userService.list(queryWrapper);
+        List<User> userList = userService.list(queryWrapper);
+        return userList.stream().map(user -> userService.getSafeUser(user)).collect(Collectors.toList());
     }
 
     @PostMapping("/delete")

@@ -10,7 +10,9 @@ spring:
   session:
     timeout: 86400
 server:
-  port: 8000
+  port: 8080
+  servlet:
+    context-path: /api
 
 # Spring Boot配置
 mybatis-plus:

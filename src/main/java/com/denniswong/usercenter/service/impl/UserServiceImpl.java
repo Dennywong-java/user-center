@@ -2,8 +2,7 @@ package com.denniswong.usercenter.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.denniswong.usercenter.constant.UserConstant;
-import com.denniswong.usercenter.model.User;
+import com.denniswong.usercenter.model.domain.User;
 import com.denniswong.usercenter.service.UserService;
 import com.denniswong.usercenter.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -78,6 +77,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             return null;
         }
         // 用户脱敏
+        User safetyUser = getSafeUser(user);
+        // 记录用户的登录态
+        request.getSession().setAttribute(USER_LOGIN_STATE, user);
+        return safetyUser;
+    }
+
+    /**
+     * 用户脱敏
+     * @param user
+     * @return
+     */
+    @Override
+    public User getSafeUser(User user){
         User safetyUser = new User();
         safetyUser.setId(user.getId());
         safetyUser.setUsername(user.getUsername());
@@ -89,8 +101,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         safetyUser.setUserRole(user.getUserRole());
         safetyUser.setUserStatus(user.getUserStatus());
         safetyUser.setCreateTime(user.getCreateTime());
-        // 记录用户的登录态
-        request.getSession().setAttribute(USER_LOGIN_STATE, user);
         return safetyUser;
     }
 }
