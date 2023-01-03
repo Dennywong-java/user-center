@@ -7,14 +7,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
+ * 用户
  * @TableName user
  */
 @TableName(value ="user")
 @Data
 public class User implements Serializable {
     /**
-     * 
+     * id
      */
     @TableId(type = IdType.AUTO)
     private Long id;
@@ -25,7 +25,7 @@ public class User implements Serializable {
     private String username;
 
     /**
-     * 用户账号
+     * 账号
      */
     private String userAccount;
 
@@ -35,37 +35,37 @@ public class User implements Serializable {
     private String avatarUrl;
 
     /**
-     * 用户性别
+     * 性别
      */
     private Integer gender;
 
     /**
-     * 用户密码
+     * 密码
      */
     private String userPassword;
 
     /**
-     * 用户手机
+     * 电话
      */
     private String phone;
 
     /**
-     * 用户邮箱
+     * 邮箱
      */
     private String email;
 
     /**
-     * 状态： 0 - normal
+     * 状态 0 - 正常
      */
     private Integer userStatus;
 
     /**
-     * 注册时间
+     * 创建时间
      */
     private Date createTime;
 
     /**
-     * 更新时间
+     * 
      */
     private Date updateTime;
 
@@ -76,9 +76,14 @@ public class User implements Serializable {
     private Integer isDelete;
 
     /**
-     * 用户角色：0-普通用户，1-管理员
+     * 用户角色 0 - 普通用户 1 - 管理员
      */
     private Integer userRole;
+
+    /**
+     * 星球编号
+     */
+    private String planetCode;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

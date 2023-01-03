@@ -1,0 +1,12 @@
+spring:
+  # DataSource Config
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: 'jdbc:mysql://dennishuang-1.cdchmu3tua75.us-east-1.rds.amazonaws.com/user_center?useSSL=false'
+    username: root
+    password: 3669450H
+  # session 失效时间
+  session:
+    timeout: 86400
+server:
+  address: 0.0.0.0
